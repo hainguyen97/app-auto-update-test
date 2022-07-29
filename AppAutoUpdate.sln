@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{8EA16A1B-F272-4F65-A543-7024BE8776DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoUpdater", "AutoUpdater\AutoUpdater.csproj", "{C313F611-1366-4A4D-A69A-94F461A014C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EA16A1B-F272-4F65-A543-7024BE8776DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA16A1B-F272-4F65-A543-7024BE8776DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA16A1B-F272-4F65-A543-7024BE8776DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA16A1B-F272-4F65-A543-7024BE8776DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C313F611-1366-4A4D-A69A-94F461A014C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C313F611-1366-4A4D-A69A-94F461A014C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C313F611-1366-4A4D-A69A-94F461A014C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C313F611-1366-4A4D-A69A-94F461A014C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
