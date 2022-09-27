@@ -30,14 +30,20 @@ jobs:
         run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
-      - name: Send some mail
-        uses: wadeww/send-email-action@master
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
         with:
+          # mail server settings
           server_address: smtp.gmail.com
-          port: 465
+          server_port: 25
+          # user credentials
           username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: Workflow finished
-          body: Job completed ${{job.status}}
-          to: john@denver.com, elton@john.com
-          from: Me
+          #password: ${{ secrets.MAIL_PASSWORD }}
+          # email subject
+          subject: Test ${{ github.job }} execution finished ${{ job.status }}
+          # email body as text
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          # comma-separated string, send email to
+          to: example@example.com
+          # from email name
+          from: GiHub example
