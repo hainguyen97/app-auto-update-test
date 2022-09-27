@@ -1,0 +1,81 @@
+name: Build and Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup MSBuild 1
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Setup VSTest
+        uses: darenm/Setup-VSTest@v1
+
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Restore Packages
+        run: nuget restore "WohHup Revit Addins.sln"
+
+      - name: Build 2017
+        run: |
+          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2017"
+      - name: Build 2018
+        run: |
+          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2018"
+      - name: Build 2021
+        run: |
+          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2021"
+      - name: Build 2022
+        run: |
+          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2022"
+      - name: Build 2020
+        run: |
+          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2020"
+      - name: Building the installer
+        run: |
+          "InnoSetup\Tools.InnoSetup.6.2.0\tools\ISCC.exe" "InnoSetup\Installer.bundle (xai dll).iss"
+        shell: cmd
+      - name: Upload the installer as an "
+        uses: actions/upload-artifact@v2
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          path: 'InnoSetup/bin/Wohhub Installer.exe'
+          name: wininstaller-innosetup
+      - uses: stcalica/s3-upload@master
+        with:
+          AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          bucket: ${{ secrets.BUCKET }}
+          package: 'InnoSetup/bin/Wohhub Installer.exe'
+          key: 'tutorial/Wohhup Installer.exe'
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+            channel-id: 'C02UZ1GHZH8'
+            payload: |
+                {
+                  "text": "HC Revit Addins: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "HC Revit Addins: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                      }
+                    }
+                  ]
+                }
+        env:
+              SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
