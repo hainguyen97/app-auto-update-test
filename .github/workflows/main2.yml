@@ -38,7 +38,7 @@ jobs:
           server_port: 25
           # user credentials
           username: ${{secrets.MAIL_USERNAME}}
-          #password: ${{ secrets.MAIL_PASSWORD }}
+          password: ${{ secrets.MAIL_PASSWORD }}
           # email subject
           subject: Test ${{ github.job }} execution finished ${{ job.status }}
           # email body as text
