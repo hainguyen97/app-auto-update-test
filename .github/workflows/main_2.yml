@@ -27,21 +27,16 @@ jobs:
       - name: Restore Packages
         run: nuget restore "AppAutoUpdate.sln"
 
-      - name: Build 2017
-        run: |
-          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2017"
-      - name: Build 2018
-        run: |
-          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2018"
+     
       - name: Build 2021
         run: |
-          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2021"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release R21"
       - name: Build 2022
         run: |
-          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2022"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release R22"
       - name: Build 2020
         run: |
-          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2020"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release R20"
       - name: Building the installer
         run: |
           "InnoSetup\Tools.InnoSetup.6.2.0\tools\ISCC.exe" "InnoSetup\Installer.bundle (xai dll).iss"
