@@ -29,19 +29,19 @@ jobs:
 
       - name: Build 2017
         run: |
-          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2017"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2017"
       - name: Build 2018
         run: |
-          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2018"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2018"
       - name: Build 2021
         run: |
-          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2021"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2021"
       - name: Build 2022
         run: |
-          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2022"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2022"
       - name: Build 2020
         run: |
-          msbuild.exe "WohHup Revit Addins.sln" /p:platform="Any CPU" /p:configuration="Release-2020"
+          msbuild.exe "AppAutoUpdate.sln" /p:platform="Any CPU" /p:configuration="Release-2020"
       - name: Building the installer
         run: |
           "InnoSetup\Tools.InnoSetup.6.2.0\tools\ISCC.exe" "InnoSetup\Installer.bundle (xai dll).iss"
