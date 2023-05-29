@@ -24,4 +24,13 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run 1
         run: echo "${{ vars.HUHU }}"
+        
+      - uses: keithweaver/aws-s3-github-action@v1.0.0
+        with:
+          command: cp
+          source: ./local_file.txt
+          destination: s3://yourbucket/folder/local_file.txt
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: us-east-1
 
