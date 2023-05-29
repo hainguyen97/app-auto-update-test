@@ -23,5 +23,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run 1
-        run: echo "${{ ENV_SECRET.HIHI }}"
+        run: echo "${{ vars.HUHU }}"
 
