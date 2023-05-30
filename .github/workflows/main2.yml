@@ -31,3 +31,12 @@ jobs:
       
       - name: Build the Solution
         run: msbuild AppAutoUpdate.sln /p:Configuration=Release
+        
+      - uses: keithweaver/aws-s3-github-action@v1.0.0
+        with:
+          command: cp
+          source: D:\a\app-auto-update-test\app-auto-update-test\Installer\bin\Release\Installer.exe
+          destination: s3://hainn/local_file.exe
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: us-east-1
